@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- blog.html -->
+  <head>
+    <title>in bloom</title>
+    <link rel="stylesheet" href="style.css"/>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ballet&display=swap" rel="stylesheet"/>
+    <style>
+      body {
+        background-color: hsl(240, 71%, 24%);
+        font-family: 'Times New Roman', serif;
+        color: #000;
+        margin: 0;
+      }
+
+      .centered-img-container {
+        text-align: center;
+        margin-top: 2rem;
+      }
+
+      .centered-img {
+        max-width: 60%;
+        height: auto;
+        display: block;
+        margin: 2rem auto;
+        padding: 2rem;          /* thick padding inside the border */
+        background-color: #12126a; /* thick color block behind the image */
+        border: 8px solid #db8ae2; /* visible colorful outline */
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.4); /* optional shadow */
+      }
+
+      .hidden {
+        display: none !important;
+      }
+
+      .poem-preview-container {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      top: 100px;
+      right: 30px;
+      gap: 10px;
+      }
+
+    .poem-preview {
+      width: 60px;
+      height: 60px;
+      background: #db8ae2;
+      color: white;
+      font-size: 10px;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      border: 2px solid white;
+    }
+
+    .poem-modal {
+      position: fixed;
+      top: 10%;
+      left: 20%;
+      transform: translateX(-20%);
+      background: #ffffcc;
+      padding: 2rem;
+      max-width: 80%;
+      max-height: 80vh;
+      overflow-y: auto;
+      border: 3px solid #db8ae2;
+      z-index: 1000;
+      display: none;
+    }
+
+    .poem-modal.show {
+      display: block;
+    }
+
+    .modal-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.6);
+      z-index: 999;
+      display: none;
+    }
+
+    .modal-backdrop.show {
+      display: block;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+    </style>
+  </head>
+  <body>
+      <header class="site-header">
+        <div class="header-left">
+          <!-- Back Button Container -->
+          <div class="back-container">
+            <a href="index.html" class="back-button" aria-label="Go back to menu">
+              <span class="tooltip">&larr;</span>
+            </a>
+          </div>
+      
+          <!-- Title -->
+          <div class="title-container">
+            <a href="home.html" class="site-title">In bloom</a>
+          </div>
+        </div>
+  
+        <!-- Nav Links -->
+        <nav class="header-nav">
+          <a href="home.html">home</a>
+           <!-- <li><a href="about.html">about</a></li> -->
+          <a href="blog.html">blog</a>
+          <a href="gallery.html">gallery</a>
+        </nav>
+      </header>
+
+    <main>
+        <div class="content-frame">
+           <!-- Leg Image Top -->
+    <div class="centered-img-container">
+      <img src="images/digital/mahlegs.png" alt="gallery img" class="gallery-img centered-img" />
+    </div>
+
+    <!-- Blog Cards -->
+    <div class="blog-grid">
+      <div class="blog-card" onclick="openPost('blog-post-1')">
+        <h3>X</h3>
+        <p>X...</p>
+      </div>
+      <div class="blog-card" onclick="openPost('blog-post-2')">
+        <h3>X</h3>
+        <p>X...</p>
+      </div>
+    </div>
+  
+            <!-- Blog Modal (centered under image) -->
+    <div id="blog-modal" class="modal hidden">
+      <div class="modal-content">
+        <span class="close-button" onclick="closePost()">&times;</span>
+        <div id="blog-posts-wrapper">
+          <div id="blog-post-1" class="blog-entry hidden">
+            <h2>post 1</h2>
+            <p>X....</p>
+          </div>
+          <div id="blog-post-2" class="blog-entry hidden">
+            <h2>post 2</h2>
+            <p>X...</p>
+          </div>
+          <div id="blog-post-3" class="blog-entry hidden">
+            <h2>post 3</h2>
+            <p>X...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tiny clickable poem squares -->
+    <div class="poem-preview-container">
+      <div class="poem-preview" data-poem="caladium">caladium</div>
+      <div class="poem-preview" data-poem="lady-luck">lady luck</div>
+      <div class="poem-preview" data-poem="poem1">poem</div>
+    </div>
+
+    <!-- Modals for each poem -->
+            <div class="poem-modal hidden" id="caladium">
+              <div class="poem-wrapper">
+                <p class="poem-title"><strong>caladium</strong></p>
+                <p>Beg! keep me here<br>
+                talk me through the watering<br>
+                the nourishing the maintenance of the soul<br>
+                the beholding of each one on its own<br>
+                that you collect preciously<br>
+                after a long day of absence i whisper<br>
+                Absence of you<br>
+                in the morning ill remember<br>
+                we encompass more than pain<br>
+                its permanent existence<br>
+                so we get used to it<br>
+                Dukkah, unfit<br>
+                your name under my bed<br>
+                with a dead corpse, we talk a little<br>
+                briefly before<br>
+                i sleep<br>
+                the last day<br>
+                i was happy was promised more<br>
+                with a gratifying mouth<br>
+                bestow hope<br>
+                ill see those gaps move<br>
+                in front of me again<br>
+                You made me a grown child<br>
+                i pray to marks left in my book<br>
+                memories in<br>
+                photographs i took<br>
+                weeks add up my time<br>
+                measured accurately Our time polished immaculately<br>
+                nothing was said to hurt or offend<br>
+                mercifully ive calloused over since then<br>
+                alone i return<br>
+                to the place we grew<br>
+                the coop<br>
+                you flew<br>
+                ~~~</p>
+              </div>
+            </div>
+            
+            <div class="poem-modal hidden" id="lady-luck">
+              <div class="poem-wrapper">
+                <p class="poem-title"><strong>lady luck lover of life</strong></p>
+                  <p>lady luck lover of life<br>
+                    say thank you for the strife<br>
+                    chasing thrill staying still and waiting until<br>
+                    one day it will be brought again<br>
+                    on a decorated silver platter<br>
+                    taste life again young beauty<br>
+                    feast well and drink tea<br>
+                    one day u shall be free<br>
+                  ~~~</p>
+              </div>
+            </div>
+
+            <div class="poem-modal hidden" id="poem1">
+              <div class="poem-wrapper">
+                  <p class="poem-title"><strong>poem</strong></p>
+                  <p>they do it on purpose<br>
+                    dont rush me into it<br>
+                    for my final form is<br>
+                    is processing<br>
+                    i missed you i miss you ill miss you<br>
+                    bathe me in the glory<br>
+                    of being in my prime<br>
+                    my first step towards personal justice<br>
+                    a pencil notepad girl<br>
+                    let me know between the lines<br>
+                    inside the sheets<br>
+                    in a look 50 feet away<br>
+                    at some point when your ready<br>
+                  ~~~</p>
+                </div>
+            </div>
+    </main> 
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+      <script src="script.js"></script>
+  </body>
+</html>

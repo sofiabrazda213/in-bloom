@@ -1,0 +1,800 @@
+/* style.css */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  box-sizing: border-box;
+  background-color: black;
+  height: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  background-color: #1f2573; /* deep blue */
+  color: #fff;
+  font-family: 'Times New Roman', Times, serif;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  width: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+  
+  /* Header Layout */
+.site-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 1rem 2rem;
+  background: #1f2573;
+  color: white;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+/* Left Side Title/Subtitle */
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.title-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.site-title {
+  font-family: 'Ballet', cursive;
+  font-size: 3.5rem;
+  line-height: 1.1;
+  letter-spacing: 0.05em;
+  color: white;
+  text-decoration: none;
+}
+
+.site-subtitle {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.03em;
+  margin-top: 0.2rem;
+}
+
+/* Back button */
+.back-container {
+  display: flex;
+  align-items: center;
+}
+
+.back-button {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  background-color: transparent;
+  color: white;
+  border: 1px solid white;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  font-size: 1.5rem;
+  font-weight: bold;
+  line-height: 1;
+}
+
+.back-button::before {
+  content: "<-";
+}
+
+.back-button:hover {
+  background-color: white;
+  color: black;
+}
+
+.tooltip {
+  position: absolute;
+  left: 1.5rem;
+  top: 0;
+  background: black;
+  color: white;
+  padding: 0.1rem 0.4rem;
+  font-size: 0.7rem;
+  border-radius: 3px;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+
+/* Desktop (default) */
+.header-nav a {
+  margin-left: 1.5rem;
+  position: relative;
+  display: inline-block;
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.25rem;
+  padding: 0.5rem 1rem;
+  z-index: 1;
+  overflow: hidden; /* ensures background doesn't overflow */
+}
+
+/* Create the "underline" that grows up */
+.header-nav a::before {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 4px; /* initial small underline */
+  background-color: rgb(219, 138, 222); /* change this color as needed */
+  z-index: -1;
+  transition: height 0.4s ease, top 0.4s ease;
+}
+
+/* On hover, turn the underline into a full background */
+.header-nav a:hover::before {
+  top: 0;
+  height: 100%;
+}
+
+/* Responsive (mobile/tablet) */
+@media screen and (max-width: 768px) {
+  .header-nav {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem;
+    gap: 0.5rem;
+  }
+
+  .header-nav a {
+    margin-left: 0;
+    display: block;
+    text-decoration: underline;
+  }
+}
+  
+  .loading-screen {
+    position: fixed; /* change from absolute to fixed */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 1s ease;
+  }
+
+  #loading-text {
+    font-size: 2rem;
+    color: #fff;
+    letter-spacing: 0.05em;
+    text-align: center;
+  }
+
+  @keyframes flicker {
+    0% { opacity: 0.8; }
+    50% { opacity: 1; }
+    100% { opacity: 0.9; }
+  } 
+
+  .main-content {
+    display: none;
+    padding: 2rem;
+    font-size: 1.5rem;
+  }
+
+  .page-border {
+    border: 2px solid white;
+    box-shadow: 0 0 20px white;
+  }
+
+  /* Frame around content */
+  .content-frame {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0;
+    box-sizing: border-box;
+
+  /* FIXED HEIGHT HANDLING */
+  min-height: 100vh; /* always at least full screen height */
+
+  /* BACKGROUND IMAGE */
+  background-image: url('images/digital/site-image1.png');
+  background-size: cover;          /* spans full frame */
+  background-repeat: no-repeat;
+  background-position: center center;
+  }
+
+  .content-frame:hover {
+    box-shadow: 0 0 20px white;
+  }
+
+    /* Make content-frame stretch to fit screen size */
+@media screen and (min-width: 768px) {
+  .content-frame {
+    max-width: 95%;
+  }
+}
+  
+
+  /* Navigation screen layout */
+.nav-menu-screen {
+    background-color: black;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100vh;
+    display: none;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .nav-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
+  
+  .nav-logo {
+    height: 100px;
+    margin-bottom: 1rem;
+    margin-left: -20px;
+  }
+  
+  .nav-list {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+  }
+  
+  .nav-list li {
+    margin: 0.5rem 0;
+  }
+  
+  .nav-list a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.25rem;
+    letter-spacing: 0.05em;
+  }
+  
+  .nav-list a:hover {
+    text-decoration: underline;
+  } 
+  
+  .nav-wrapper {
+    background-color: black;
+    border: 2px solid white;
+    padding-top: 40px;
+    padding: 30px;
+    margin: 0 auto;
+    width: fit-content;
+    max-width: 90%;
+    text-align: center;
+  }
+
+/* Poetry generator */
+.poetry-container button {
+  background: transparent;
+  color: white;
+  border: 1px solid white;
+  padding: 0.5rem;
+  cursor: pointer;
+  transition: opacity 0.3s;
+  margin-top: 1.5rem;
+}
+
+.poetry-container button:hover {
+  background: white;
+  color: black;
+  opacity: 0.8;
+}
+
+quote-box {
+  flex: 1;
+  overflow-y: auto;
+  color: white;
+  font-family: 'IBM Plex Mono', monospace;
+  white-space: pre-wrap;
+  line-height: 1.4;
+  margin-bottom: 1rem;
+}
+
+#quote-text {
+  color: white;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 1rem;
+  line-height: 1.4;
+  white-space: pre-wrap;
+}
+
+.poetry-container:hover #quote-text {
+  color: rgb(219, 138, 222);
+}
+
+.fade-line {
+  opacity: 0;
+  transform: translateX(-20px);
+  animation: slideIn 0.8s ease forwards;
+}
+
+/* Delay each line magically */
+.fade-line:nth-child(1) { animation-delay: 0.2s; }
+.fade-line:nth-child(2) { animation-delay: 0.6s; }
+.fade-line:nth-child(3) { animation-delay: 1s; }
+
+@keyframes slideIn {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Blog posts */
+
+.blog-panel {
+  width: 100%;
+  color: white;
+  padding: 2rem;
+}
+
+.blog-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  margin-top: 2rem;
+  padding: 2rem;
+}
+
+.blog-card {
+  flex: 1 1 calc(33.333% - 1rem);  /* allows 3 per row with space */
+  max-width: calc(33.333% - 1rem);
+  border: 1px solid white;
+  padding: 1rem;
+  color: white;
+  cursor: pointer;
+  background: black;
+  transition: transform 0.3s ease;
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .blog-card {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+}
+
+.blog-card:hover {
+  transform: scale(1.03);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.95);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* top-aligned to allow scrolling */
+  overflow-y: auto;
+  z-index: 999;
+  padding: 2rem; /* optional: adds spacing */
+}
+
+.modal-content {
+  background: rgba(20, 20, 20, 0.95);
+  padding: 2rem;
+  border: 1px solid white;
+  width: 100%;
+  max-width: 800px;
+  color: white;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+}
+
+.blog-entry {
+  flex: 1 1 45%;
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 1rem;
+  border: 1px solid white;
+}
+
+.close-button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
+
+/* poem block */
+.poem-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem; /* adds spacing between the blocks */
+  padding: 2rem 0;
+}
+
+.poem-block-one,
+.poem-block-two,
+.poem-block-three {
+  background-color: #f4f1be;
+  padding: 2rem;
+  margin-left: 2rem;
+  width: 550px;
+  font-family: 'Times New Roman', Times, serif;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  border: 2px solid #cc47f5;
+  display: block;
+  color: black;
+}
+
+.poem-title {
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.image-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.me-image {
+  width: 300px;
+  height: auto;
+  border: 2px solid #cc47f5;
+  display: block;
+  margin: 0 auto;
+}
+
+.image-caption {
+  font-size: 0.9rem;
+  color: #cc47f5;
+  margin-top: 0.5rem;
+}
+
+/* GALLERY.HTML BITCH */
+
+.linked-picture {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #cc47f5;
+  display: block;
+  margin: 0 auto;
+}
+
+.gallery-content {
+  display: block;
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  box-sizing: border-box;
+  transition: box-shadow 0.3s ease;
+}
+
+.gallery-content:hover {
+  box-shadow: 0 0 20px #cc47f5;
+}
+
+.gallery-frame {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.gallery-top {
+  margin-bottom: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;       /* center vertically */
+  align-self: center;        /* optional if inside another flex */
+  width: 100%;
+}
+
+.gallery-bottom {
+  display: flex;
+  justify-content: center;
+  gap: 20px; /* space between cards */
+  flex-wrap: wrap; /* optional, for smaller screens */
+}
+
+.gallery-card {
+  overflow: hidden;
+  cursor: pointer;
+  border: 2px solid #cc47f5;
+  transition: transform 0.3s ease;
+}
+
+.gallery-card img {
+  max-width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.gallery-card:hover img {
+  transform: scale(1.1);
+}
+
+.gallery-container {
+  display: flex;
+  min-height: 100vh;
+  height: 100vh; /* nables vertical scroll */
+  overflow: hidden;
+}
+
+.gallery-nav {
+  width: 25%;
+  background-color: #0d1b3d;
+  color: white;
+  padding: 2rem;
+  overflow-y: auto;
+  height: 100vh;
+  box-sizing: border-box;
+  background-image: url('site-image1.png');
+}
+
+.gallery-nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+.gallery-nav li {
+  margin-bottom: 1rem;
+}
+
+.gallery-display {
+  width: 75%;
+  padding: 2rem;
+  background-color: #1e2d58;
+  overflow-y: auto;
+}
+
+/* 35mm Gallery */
+
+.photo-grid-scroll {
+  height: 100%;
+  overflow-y: auto;
+  padding-right: 1rem;
+  box-sizing: border-box;
+}
+
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.photo-tile img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 4px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  object-fit: cover;
+}
+
+/* Gallery modal */
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8); /* black transparent */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modal.hidden {
+  display: none;
+}
+
+.modal-content {
+  padding: 2rem;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 90vw;
+  max-height: 90vh;
+  border: 2px solid white;
+  background-color: transparent;;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.modal-content img {
+  width: 500px;
+  height: auto;
+  object-fit: contain;
+  box-shadow: 0 0 20px 4px white; /* Glow */
+  display: block;
+  margin: 0 auto;
+}
+
+.close-button {
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  font-size: 2rem;
+  color: white;
+  background: black;
+  border: 1px solid white;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  text-align: center;
+  line-height: 32px;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+/* Modal styles */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8); /* transparent black */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modal.hidden {
+  display: none;
+}
+
+.modal-content {
+  position: relative;
+  max-width: 90%;
+  max-height: 90%;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 2rem;
+  color: #cc47f5;
+  cursor: pointer;
+}
+
+.modal-overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+/* Black modal preview card style */
+.internet-preview {
+  width: 300px;
+  height: 300px;
+  background-color: black;
+  padding: 10px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  border: 2px solid #ff66ff;
+}
+
+.internet-preview img {
+  max-width: 85%;
+  max-height: 85%;
+  object-fit: contain;
+}
+
+.internet-preview:hover {
+  box-shadow: 0 0 20px #fff;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.portal-gallery {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+#gallery-modal {
+  overflow-y: auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+#modal-image-container {
+  max-height: 80vh;             /* limit height */
+  overflow-y: auto;             /* scroll if content overflows */
+  display: flex;
+  flex-direction: column;       /* vertical stack */
+  align-items: center;
+  gap: 2rem;
+  padding: 2rem;
+  border: 2px solid white;
+  box-shadow: 0 0 10px white;
+}
+
+
+/* Scroll gallery modal */
+.scroll-gallery-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2rem;
+  max-width: 900px;
+  margin: 5rem auto;
+}
+
+.scroll-gallery-content img {
+  width: 100%;
+  border: 2px solid white;
+  box-shadow: 0 0 10px white;
+}
+
+.scrollable-gallery {
+  max-height: 80vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+}
+
+.scrollable-images {
+  max-height: 80vh;
+  overflow-y: scroll;
+}

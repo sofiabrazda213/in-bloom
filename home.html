@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- home.html -->
+  <head>
+    <title>in bloom</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ballet&display=swap" />
+     <!-- Internal CSS Section -->
+  <style>
+    .main-page {
+      display: flex;
+      flex-direction: row;
+      height: 100vh;
+      width: 100vw;
+      overflow: hidden;
+    }
+
+    /* === Left Frame === */
+    .left-frame {
+      width: 60%;
+      min-height: 100vh;
+      /* overflow-y: auto; */
+      overflow: visible;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0;
+      position: relative;
+      transition: box-shadow 0.3s ease;
+    }
+
+    .left-frame:hover {
+      box-shadow: 0 0 30px 10px white;
+      transition: box-shadow 0.3s ease;
+      transform: scale(1.05);
+      filter: brightness(1.1);
+    }
+
+    .index-container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 10; /* ensure above background */
+    }
+
+    .index-text {
+      z-index: 12;
+      position: absolute;     /* or relative if you want it to move with the card */
+      color: black;           /* optional: make sure text color contrasts */
+      font-size: 1rem;        /* adjust as needed */
+      top: 50%;               /* center it */
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .image-bg {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+    
+    .bg-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 0;
+    }
+
+    .overlay-img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 500px;             /* adjust to desired card size */
+      height: auto;
+      z-index: 10;
+    }
+
+    .music-note-sticker {
+      width: 50px;        /* much tinier than before */
+      height: auto;
+      position: absolute;
+      top: 50%;
+      left: 60%;
+      transform: translate(-50%, -50%);
+      z-index: 11;              /* higher than overlay */
+      pointer-events: none;     /* so clicks go through */
+    }
+
+    .image-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease; /* smooth animation */
+    }
+
+    /* === Right Pane === */
+    .right-pane {
+      width: 40%;
+      min-height: 100vh;
+      overflow-y: auto;
+      background-color: #1e3a8a;
+      color: white;
+      padding: 2rem;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .poetry-container {
+      width: 80%; /* Make it narrower */
+      height: auto;
+      max-width: 500px;
+      max-height: none;
+      overflow: visible;
+      display: flex;
+      flex-direction: column;
+      margin-left: auto;
+      padding-bottom: 4rem;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+      transition: all 0.4s ease;
+    }
+
+    /* Hidden by default */
+    .description-box {
+      background-color: pink;
+      color: #1e1e1e;
+      padding: 1rem;
+      border-radius: 5px;
+      text-align: center;
+      margin-bottom: 1rem;
+      opacity: 0;
+      transform: translateY(-20px);
+      transition: all 0.4s ease;
+      pointer-events: none;
+    }
+
+    .quote-box {
+      overflow-y: visible;
+      box-sizing: border-box;
+      padding-top: 3rem;
+      white-space: pre-wrap;
+      line-height: 1.4;
+      margin-bottom: 1rem;
+      transition: color 0.4s ease, transform 0.4s ease;
+    }
+
+    /* Hover effect triggers */
+    .poetry-container:hover .description-box {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .poetry-container:hover .quote-box {
+      color: rgb(219, 138, 222);
+      transform: translateY(1rem); /* shifts it down */
+    }
+
+  </style>
+  </head>
+  <body>
+      <header class="site-header">
+        <div class="header-left">
+          <!-- Back Button Container -->
+          <div class="back-container">
+            <a href="index.html" class="back-button" aria-label="Go back to menu">
+              <span class="tooltip">← back</span>
+            </a>
+          </div>
+  
+          <!-- Title and Subtitle Container -->
+          <div class="title-container">
+            <a href="home.html" class="site-title">In bloom</a>
+            <!-- <p class="site-subtitle">a poetic interface</p> -->
+          </div>
+        </div>
+  
+        <!-- Nav Links -->
+        <nav class="header-nav">
+          <a href="home.html">home</a>
+           <!-- <li><a href="about.html">about</a></li> -->
+          <a href="blog.html">blog</a>
+          <a href="gallery.html">gallery</a>
+        </nav>
+      </header>
+  
+      <main class="main-page">
+        <div class="left-frame">
+          <!-- <h2>In bloom</h2> -->
+          <div class="image-bg">
+            <img src="images/digital/site-image1.png" alt="site img" class="bg-img"/>
+          </div>
+          <div class="index-container">
+            <img src="images/digital/index-card.png" alt="overlay" class="overlay-img" />
+            <div class="index-text">Hi</div>
+            <img src="images/digital/music-note.png" alt="sticker" class="music-note-sticker" />
+          </div>
+        </div>
+      
+        <div class="right-pane">
+          <div class="poetry-container">
+            <button onclick="generateLine()">new poem</button>
+            <div class="quote-box" id="quote-text">Loading line...</div>
+            <div class="description-box">
+              <p class="fade-line">enjoy this poetry container</p>
+              <p class="fade-line">it fetches a random poem</p>
+              <p class="fade-line">parsed from a poetry database</p>
+              <p class="fade-line">for your computer screen</p>
+              <p class="fade-line">find a poem you like xx</p>
+            </div>
+          </div>
+        </div>
+      </main>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+      <script src="script.js"></script>
+  </body>
+</html>
